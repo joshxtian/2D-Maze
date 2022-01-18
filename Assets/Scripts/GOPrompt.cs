@@ -5,18 +5,21 @@ using UnityEngine;
 public class GOPrompt : MonoBehaviour
 {
     public GameObject GOPanel;
+    private AudioSource sound;
 
     // Start is called before the first frame update
     void Start()
-    {
-       GOPanel.SetActive(false);
-       Time.timeScale = 1f; 
+    {   
+        sound = GetComponent<AudioSource>();
+        GOPanel.SetActive(false);
+        Time.timeScale = 1f; 
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
             GOPanel.SetActive(true);
-            Time.timeScale = 0f;  
+            Time.timeScale = 0f;
+            sound.Play();  
         }
     }
 }
